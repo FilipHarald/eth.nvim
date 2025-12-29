@@ -34,7 +34,7 @@ end
 
 --- Get balance of an Ethereum address using cast (mainnet only)
 ---@param address string The Ethereum address (with 0x prefix)
----@return string|nil balance The balance string or nil on error
+---@return string|nil balance The balance in ETH or nil on error
 ---@return string|nil error_msg Error message if command failed
 function M.get_balance(address)
 	if not M.is_available() then
@@ -43,8 +43,8 @@ function M.get_balance(address)
 	end
 
 	local cast_cmd = require("eth.config").get_cast_cmd()
-	-- Use mainnet RPC (cast will use default mainnet RPC)
-	local cmd = { cast_cmd, "balance", address }
+	-- Use mainnet RPC with --ether flag to format in ETH
+	local cmd = { cast_cmd, "balance", address, "--ether" }
 
 	local result = vim.fn.system(cmd)
 	local exit_code = vim.v.shell_error

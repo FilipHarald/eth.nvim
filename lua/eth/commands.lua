@@ -130,7 +130,7 @@ function M.get_balance()
 		return
 	end
 
-	vim.notify("Balance: " .. balance, vim.log.levels.INFO)
+	vim.notify("Balance: " .. balance .. " Ξ", vim.log.levels.INFO)
 end
 
 return M
